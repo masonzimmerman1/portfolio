@@ -1,9 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 72" font-family="Arial, Helvetica, sans-serif">
-  <!-- angular "slice" mark -->
-  <g>
-    <path d="M12 50 L30 14 L34 50 Z" fill="#e8531f"/>
-    <path d="M30 14 L40 50 L34 50 Z" fill="#b23410"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178 70" font-family="Arial, Helvetica, sans-serif">
+  <!-- citrus orange wheel -->
+  <g transform="translate(30,35)">
+    <circle r="23" fill="#f0a52c"/>
+    <circle r="18.5" fill="#f8c163"/>
+    <g stroke="#ffffff" stroke-width="2.2" stroke-linecap="round">
+      <line x1="0" y1="0" x2="0" y2="-18.5"/>
+      <line x1="0" y1="0" x2="13" y2="-13"/>
+      <line x1="0" y1="0" x2="18.5" y2="0"/>
+      <line x1="0" y1="0" x2="13" y2="13"/>
+      <line x1="0" y1="0" x2="0" y2="18.5"/>
+      <line x1="0" y1="0" x2="-13" y2="13"/>
+      <line x1="0" y1="0" x2="-18.5" y2="0"/>
+      <line x1="0" y1="0" x2="-13" y2="-13"/>
+    </g>
+    <circle r="18.5" fill="none" stroke="#ffffff" stroke-width="1.6"/>
+    <circle r="3" fill="#ffffff"/>
   </g>
-  <text x="50" y="34" fill="#2b2f36" font-size="22" font-weight="800" letter-spacing="1">SLICE</text>
-  <text x="50" y="52" fill="#7a828c" font-size="12.5" font-weight="700" letter-spacing="2.5">CONSULTING</text>
+  <text x="62" y="30" fill="#1c1c1c" font-size="21" font-weight="800" letter-spacing="0.5">SLICE</text>
+  <text x="62" y="50" fill="#1c1c1c" font-size="21" font-weight="800" letter-spacing="0.5">CONSULTING</text>
+  <text x="63" y="63" fill="#c79a3a" font-size="8.5" font-weight="700" letter-spacing="2">SYRACUSE UNIVERSITY</text>
 </svg>

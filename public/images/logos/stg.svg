@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 134" font-family="'Arial Black', Arial, Helvetica, sans-serif">
+  <!-- bold S monogram -->
+  <text x="60" y="100" text-anchor="middle" fill="#0b0b0b" font-size="120" font-weight="900">S</text>
+  <!-- mountain-peak negative space carved through the waist of the S -->
+  <polygon points="36,61 50,45 58,53 70,41 84,61" fill="#ffffff"/>
+  <polygon points="36,61 84,61 84,64 36,64" fill="#ffffff"/>
+  <!-- wordmark -->
+  <text x="60" y="126" text-anchor="middle" fill="#0b0b0b" font-size="11" font-weight="700" letter-spacing="2.5" font-family="Arial, Helvetica, sans-serif">SOFTWARE TECHNOLOGY GROUP</text>
+</svg>

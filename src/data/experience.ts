@@ -9,7 +9,7 @@ export const roles: Role[] = [
     org: "Software Technology Group · Portland, OR",
     date: "Apr 2026 – Present",
     column: 1,
-    logo: "/images/logos/stg.png",
+    logo: "/images/logos/stg.svg",
     bullets: [
       "Designed and built an internal business-metrics dashboard connecting to live financial & operational data, surfacing 5+ KPIs for real-time business-health monitoring.",
       "Integrated the Claude API to add an AI insights layer translating data into executive guidance.",

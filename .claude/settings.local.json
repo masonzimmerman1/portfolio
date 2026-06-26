@@ -20,7 +20,8 @@
       "Bash(git rm *)",
       "Bash(mv public/transcript.pdf _private/transcript.pdf)",
       "Bash(printf \"\\\\n# Local-only private files \\(not deployed\\)\\\\n_private/\\\\n\")",
-      "Bash(git commit -q -m ' *)"
+      "Bash(git commit -q -m ' *)",
+      "mcp__visualize__show_widget"
     ]
   }
 }
