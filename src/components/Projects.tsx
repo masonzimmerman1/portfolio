@@ -2,7 +2,6 @@ import { useState } from "react";
 import { projects, projectsIntro } from "../data/projects";
 import type { Project } from "../types";
 import { Img } from "./Img";
-import { AiInsight } from "./AiInsight";
 
 function ProjectCard({ p }: { p: Project }) {
   return (
@@ -46,8 +45,7 @@ function ProjectCard({ p }: { p: Project }) {
               Fully interactive, sanitized demo — click the sidebar tabs to explore each view. All
               names and figures are fictional sample data; no real company data is shown.
             </div>
-            <AiInsight />
-            <div className="frame" style={{ marginTop: 18 }}>
+            <div className="frame">
               <iframe src={p.demoUrl} title={`${p.heading} Demo`} loading="lazy" />
             </div>
           </div>

@@ -2,7 +2,6 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "netlify/functions"
 
 # SPA fallback: serve index.html for any client-side route so React handles it.
 # (Excludes /.netlify/functions/* which Netlify routes to serverless functions.)
