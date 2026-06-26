@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 72" font-family="Arial, Helvetica, sans-serif">
+  <!-- angular "slice" mark -->
+  <g>
+    <path d="M12 50 L30 14 L34 50 Z" fill="#e8531f"/>
+    <path d="M30 14 L40 50 L34 50 Z" fill="#b23410"/>
+  </g>
+  <text x="50" y="34" fill="#2b2f36" font-size="22" font-weight="800" letter-spacing="1">SLICE</text>
+  <text x="50" y="52" fill="#7a828c" font-size="12.5" font-weight="700" letter-spacing="2.5">CONSULTING</text>
+</svg>
