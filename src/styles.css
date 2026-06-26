@@ -42,7 +42,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);bac
 .hero h1{color:#fff;font-size:46px;letter-spacing:-.5px;margin:14px 0}
 .hero h1::after{content:'';display:block;width:72px;height:4px;margin-top:16px;border-radius:2px;background:linear-gradient(90deg,var(--usc-cardinal),var(--usc-gold))}
 @media(max-width:780px){.hero h1::after{margin-left:auto;margin-right:auto}}
-.hero .tag{font-size:19px;color:#cdd8e6;font-weight:400;margin-bottom:18px}
+.hero-tag{font-size:20px;color:#eaf1fb;font-weight:500;line-height:1.5;margin-bottom:18px}
 .hero .lede{color:#aebbcd;max-width:540px;margin-bottom:28px}
 @media(max-width:780px){.hero .lede{margin-left:auto;margin-right:auto}}
 .hero .eyebrow{color:var(--usc-gold)}

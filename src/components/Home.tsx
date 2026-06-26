@@ -11,7 +11,7 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
           <div>
             <div className="eyebrow">{profile.eyebrow}</div>
             <h1>{profile.name}</h1>
-            <div className="tag">{profile.tag}</div>
+            <div className="hero-tag">{profile.tag}</div>
             <p className="lede">{profile.lede}</p>
             <div className="btns">
               <button className="btn primary" onClick={() => onNavigate("projects")}>
