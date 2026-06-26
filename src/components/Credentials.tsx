@@ -1,4 +1,31 @@
+import { useState } from "react";
 import { education, certs, credentialsIntro } from "../data/credentials";
+
+// Shows the certification logo; if the image is missing, falls back to the
+// tinted emoji badge so the box never looks broken.
+function CertLogo({
+  src,
+  title,
+  icon,
+  tint,
+  fg,
+}: {
+  src: string;
+  title: string;
+  icon: string;
+  tint: string;
+  fg: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span className="cert-badge-fallback" style={{ background: tint, color: fg }}>
+        {icon}
+      </span>
+    );
+  }
+  return <img src={src} alt={`${title} logo`} onError={() => setFailed(true)} />;
+}
 
 export function Credentials() {
   return (
@@ -26,9 +53,15 @@ export function Credentials() {
             {certs.map((c, i) => {
               const inner = (
                 <>
-                  <span className="cert-badge" style={{ background: c.tint, color: c.fg }}>
-                    {c.icon}
-                  </span>
+                  {c.logo ? (
+                    <span className="cert-badge cert-badge-logo">
+                      <CertLogo src={c.logo} title={c.title} icon={c.icon} tint={c.tint} fg={c.fg} />
+                    </span>
+                  ) : (
+                    <span className="cert-badge" style={{ background: c.tint, color: c.fg }}>
+                      {c.icon}
+                    </span>
+                  )}
                   <div className="cert-text">
                     <div className="t">{c.title}</div>
                     <div className="s">{c.sub}</div>

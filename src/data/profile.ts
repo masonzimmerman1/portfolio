@@ -8,6 +8,7 @@ export const profile = {
   tag: "Finance student & AI builder turning data into better financial decisions.",
   lede: "I study Finance at USC Marshall with a minor in AI Applications through Viterbi. I work at the intersection of business, technology, and wealth management — building dashboards, financial models, and AI-driven tools that help people make smarter decisions with their money.",
   headshot: "/images/headshot_mason_zimmerman.jpg",
+  uscLogo: "/images/logos/usc.png",
   linkedin: "https://www.linkedin.com/in/mason-zimmerman1/",
   email: "masonzimmerman1@gmail.com",
   resumeUrl: "/resume.pdf",

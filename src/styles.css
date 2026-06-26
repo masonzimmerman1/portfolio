@@ -187,3 +187,27 @@ a.cert:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:trans
 .contact-list a:hover{color:#7fb0e6}
 .contact-list .ci{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#7fb0e6;font-weight:700;margin-bottom:5px}
 .footer-note{padding:24px 0;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+
+/* ===== LOGOS ===== */
+.logo-box{flex:none;width:46px;height:46px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo-box img{width:100%;height:100%;object-fit:contain;padding:6px}
+.logo-ph{font-weight:800;font-size:15px;color:var(--navy);background:var(--bg-2);letter-spacing:.5px}
+
+/* column titles on the experience timeline */
+.col-title{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--navy);font-weight:800;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--line)}
+@media(max-width:780px){.col-title{margin-top:8px}}
+
+/* logo + heading row inside each timeline item */
+.tl-head{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.tl-headtext{min-width:0}
+
+/* cert logo variant of the badge */
+.cert-badge-logo{background:#fff;border:1px solid var(--line);padding:0}
+.cert-badge-logo img{width:100%;height:100%;object-fit:contain;padding:7px}
+.cert-badge-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:23px}
+
+/* USC badge pinned to the headshot on the About page */
+.portrait{position:relative}
+.usc-badge{position:absolute;right:10px;bottom:10px;width:66px;height:66px;border-radius:50%;border:3px solid #fff;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.32)}
+.usc-badge img{border-radius:50%;padding:7px}
+.usc-badge.logo-ph{font-size:18px;color:var(--usc-cardinal)}

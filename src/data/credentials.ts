@@ -33,6 +33,7 @@ export const certs: Cert[] = [
     icon: "📈",
     tint: "#eaf1fb",
     fg: "#0f2a43",
+    logo: "/images/logos/finra.png",
   },
   {
     title: "Wall Street Prep",
@@ -42,6 +43,7 @@ export const certs: Cert[] = [
     icon: "📊",
     tint: "#e8f5ee",
     fg: "#1c7a4a",
+    logo: "/images/logos/wallstreetprep.png",
   },
   {
     title: "Wall Street Prep",
@@ -51,6 +53,7 @@ export const certs: Cert[] = [
     icon: "🤝",
     tint: "#e8f5ee",
     fg: "#1c7a4a",
+    logo: "/images/logos/wallstreetprep.png",
   },
   {
     title: "Bloomberg BMC",
@@ -60,6 +63,7 @@ export const certs: Cert[] = [
     icon: "💹",
     tint: "#f0f0f2",
     fg: "#111111",
+    logo: "/images/logos/bloomberg.png",
   },
   {
     title: "AWS",
@@ -69,6 +73,7 @@ export const certs: Cert[] = [
     icon: "☁️",
     tint: "#fff1e0",
     fg: "#d86613",
+    logo: "/images/logos/aws.png",
   },
   {
     title: "SAT 1500",

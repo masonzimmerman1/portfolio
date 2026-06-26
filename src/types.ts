@@ -13,6 +13,7 @@ export interface Role {
   date: string;
   bullets: string[];
   column: 1 | 2; // which timeline column it appears in
+  logo?: string; // path to org logo; falls back to a monogram if missing
 }
 
 export interface Project {
@@ -51,9 +52,10 @@ export interface Cert {
   sub: string;
   href?: string;
   cta?: string;
-  icon: string; // emoji/glyph shown in the badge
+  icon: string; // emoji/glyph shown in the badge when no logo is set
   tint: string; // badge background color
   fg: string; // badge foreground (icon) color
+  logo?: string; // path to a real logo; shown instead of the emoji when present
 }
 
 export interface ContactLink {

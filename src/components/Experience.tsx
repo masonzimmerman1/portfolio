@@ -1,14 +1,20 @@
 import { roles, experienceIntro } from "../data/experience";
 import type { Role } from "../types";
+import { Logo } from "./Logo";
 
 function Timeline({ items }: { items: Role[] }) {
   return (
     <div>
       {items.map((r, i) => (
         <div className="tl-item" key={i}>
-          <div className="role">{r.role}</div>
-          <div className="org">{r.org}</div>
-          <div className="date">{r.date}</div>
+          <div className="tl-head">
+            <Logo src={r.logo} name={r.org} className="tl-logo" />
+            <div className="tl-headtext">
+              <div className="role">{r.role}</div>
+              <div className="org">{r.org}</div>
+              <div className="date">{r.date}</div>
+            </div>
+          </div>
           <ul>
             {r.bullets.map((b, j) => (
               <li key={j}>{b}</li>
@@ -31,8 +37,14 @@ export function Experience() {
           <h2 className="sec-title">Where I've been working</h2>
           <p className="sec-intro">{experienceIntro}</p>
           <div className="two">
-            <Timeline items={col1} />
-            <Timeline items={col2} />
+            <div>
+              <h3 className="col-title">Work Experience</h3>
+              <Timeline items={col1} />
+            </div>
+            <div>
+              <h3 className="col-title">Campus Involvement</h3>
+              <Timeline items={col2} />
+            </div>
           </div>
         </div>
       </div>

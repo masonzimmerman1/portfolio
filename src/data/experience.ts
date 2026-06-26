@@ -9,6 +9,7 @@ export const roles: Role[] = [
     org: "Software Technology Group · Portland, OR",
     date: "Apr 2026 – Present",
     column: 1,
+    logo: "/images/logos/stg.png",
     bullets: [
       "Designed and built an internal business-metrics dashboard connecting to live financial & operational data, surfacing 5+ KPIs for real-time business-health monitoring.",
       "Integrated the Claude API to add an AI insights layer translating data into executive guidance.",
@@ -20,6 +21,7 @@ export const roles: Role[] = [
     org: "Brunk Industries · Remote",
     date: "Apr 2026 – Present",
     column: 1,
+    logo: "/images/logos/brunk.png",
     bullets: [
       "Lead the Finance workstream for a precision manufacturer (500M+ components produced), analyzing sector profitability and building KPIs toward a 10% annual-growth target.",
       "Structured the engagement with a MECE issue tree and rotated as weekly team lead.",
@@ -30,6 +32,7 @@ export const roles: Role[] = [
     org: "Redtail Golf Center · Portland, OR",
     date: "Jan 2024 – Aug 2025",
     column: 1,
+    logo: "/images/logos/redtail.png",
     bullets: [
       "Produced monthly, quarterly & annual financial statements; processed $8M+ in vendor invoices, improving accuracy by 15%.",
       "Youngest-ever Certified Professional Club Fitter — drove $300K+ in personalized equipment sales.",
@@ -40,6 +43,7 @@ export const roles: Role[] = [
     org: "USC Global Investment Society",
     date: "Jan 2026 – May 2026",
     column: 2,
+    logo: "/images/logos/usc-gis.png",
     bullets: [
       "Built three-statement models and DCF/LBO valuations using CapitalIQ, FactSet & Excel.",
       "Led equity research on Microsoft — an Overweight call with a $494.62 price target driven by Azure & Copilot.",
@@ -50,6 +54,7 @@ export const roles: Role[] = [
     org: "Marshall Artificial Intelligence Association",
     date: "Jan 2026 – Present",
     column: 2,
+    logo: "/images/logos/maia.png",
     bullets: [
       "Helped design an AI-enabled financial-education platform for kids; built the hardware and the market & pricing model (see Projects).",
     ],
@@ -59,6 +64,7 @@ export const roles: Role[] = [
     org: "Sigma Alpha Epsilon",
     date: "Aug 2025 – Present",
     column: 2,
+    logo: "/images/logos/sae.png",
     bullets: [
       "Oversee an $800K annual budget for a 100+ member organization using accrual-based tracking.",
       "Negotiate and manage vendor & venue contracts to ensure cost-effective, compliant execution.",
@@ -69,6 +75,7 @@ export const roles: Role[] = [
     org: "Slice Consulting · Syracuse, NY",
     date: "Sep 2024 – May 2025",
     column: 2,
+    logo: "/images/logos/slice.png",
     bullets: [
       "Led a six-person team advising a startup on college-market expansion via branded content, partnerships & a campus ambassador program.",
     ],

@@ -1,5 +1,6 @@
 import { profile, stats, about } from "../data/profile";
 import { Img } from "./Img";
+import { Logo } from "./Logo";
 import type { TabId } from "./Nav";
 
 export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
@@ -26,6 +27,7 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
           </div>
           <div className="portrait">
             <Img src={profile.headshot} alt={profile.name} phClass="ph" phText="Add headshot.jpg to /images" />
+            <Logo src={profile.uscLogo} name="University of Southern California" className="usc-badge" />
           </div>
         </div>
       </div>
