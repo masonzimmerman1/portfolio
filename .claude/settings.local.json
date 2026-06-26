@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(echo \"npm: $\\(npm -v || echo MISSING\\)\")",
+      "Bash(git --version)",
+      "Bash(echo \"git: $\\(git --version || echo MISSING\\)\")",
+      "Bash(gh --version)",
+      "Bash(winget install *)",
+      "Bash(winget list *)",
+      "Bash('C:/Program Files/nodejs/node.exe' -v)",
+      "Bash(echo \"node version: $\\('C:/Program Files/nodejs/node.exe' -v || echo 'cannot run'\\)\")",
+      "Bash(tasklist)",
+      "Bash(grep -a -v -E \"^[[:space:]]*[-\\\\\\\\/|█▒ ]*$\" \"C:/Users/masonz/AppData/Local/Temp/claude/C--Users-masonz-Claude-Projects-personal-website/314c6577-9ade-40c0-b9eb-18bebf3ab098/tasks/beuj08ma0.output\")",
+      "Bash(taskkill //F //IM msiexec.exe //T)",
+      "Bash(taskkill //F //IM winget.exe //T)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

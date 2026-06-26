@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STG Financials Dashboard — Demo (Sample Data)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0e17; --panel:#111726; --panel-2:#0d1320; --line:#1e2940;
+    --text:#e7ecf5; --muted:#8b97ad; --blue:#5b8cff; --purple:#a78bfa;
+    --teal:#2dd4bf; --green:#34d399; --red:#f87171; --amber:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  .banner{background:#15203a;border-bottom:1px solid var(--line);color:var(--muted);font-size:12.5px;text-align:center;padding:7px 12px;letter-spacing:.3px}
+  .banner b{color:var(--amber)}
+  .layout{display:flex;min-height:calc(100vh - 33px)}
+  /* sidebar */
+  .sidebar{width:218px;flex-shrink:0;background:var(--panel-2);border-right:1px solid var(--line);padding:22px 0;position:sticky;top:0;height:100vh;overflow:auto}
+  .brand{padding:0 22px 18px;border-bottom:1px solid var(--line);margin-bottom:14px}
+  .brand .logo{display:flex;align-items:center;gap:10px}
+  .brand .mark{width:34px;height:34px;border:2.5px solid #fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;transform:skewX(-8deg)}
+  .brand .mark span{transform:skewX(8deg)}
+  .brand .name{font-weight:700;font-size:13px;line-height:1.15;letter-spacing:.5px}
+  .brand .sub{color:var(--teal);font-size:10.5px;margin-top:8px;display:flex;align-items:center;gap:6px}
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block}
+  .nav a{display:flex;align-items:center;gap:11px;padding:11px 22px;color:var(--muted);text-decoration:none;font-size:14px;cursor:pointer;border-left:3px solid transparent}
+  .nav a:hover{color:var(--text);background:#0f1626}
+  .nav a.active{color:var(--text);background:#0f1626;border-left-color:var(--blue)}
+  .nav a .ico{width:16px;text-align:center;opacity:.85}
+  /* main */
+  .main{flex:1;padding:24px 30px 60px;overflow:auto}
+  .topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+  .topbar .lbl{color:var(--muted);font-size:11px;letter-spacing:1px;font-weight:600}
+  .pill{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:8px 13px;font-size:12.5px;color:var(--text)}
+  .pill.reset{cursor:pointer;color:var(--muted)}
+  .updated{margin-left:auto;color:var(--muted);font-size:11.5px}
+  h1.page{font-size:25px;font-weight:700;margin-bottom:4px}
+  .page-sub{color:var(--muted);font-size:13px;margin-bottom:22px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 17px;border-top:3px solid var(--blue)}
+  .kpi:nth-child(2){border-top-color:var(--purple)} .kpi:nth-child(3){border-top-color:var(--green)}
+  .kpi:nth-child(4){border-top-color:var(--teal)} .kpi:nth-child(5){border-top-color:var(--amber)} .kpi:nth-child(6){border-top-color:var(--red)}
+  .kpi .k{color:var(--muted);font-size:10.5px;letter-spacing:.8px;font-weight:600;text-transform:uppercase}
+  .kpi .v{font-size:26px;font-weight:800;margin:7px 0 3px}
+  .kpi .m{color:var(--muted);font-size:11.5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:18px}
+  .card h3{font-size:14.5px;font-weight:700;margin-bottom:2px}
+  .card h3 small{color:var(--muted);font-weight:400;font-size:12px;margin-left:6px}
+  .chart-wrap{position:relative;height:300px;margin-top:14px}
+  .chart-wrap.tall{height:330px}
+  .alert{background:#2a1f12;border:1px solid #5a4218;border-left:4px solid var(--amber);border-radius:9px;padding:13px 16px;font-size:13px;color:#f1e3c7;margin-bottom:18px}
+  .alert b{color:#fff}.alert .g{color:var(--green);font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
+  th{text-align:left;color:var(--muted);font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;padding:9px 8px;border-bottom:1px solid var(--line)}
+  td{padding:10px 8px;border-bottom:1px solid #161f33}
+  td.num,th.num{text-align:right}
+  .section{display:none}.section.active{display:block}
+  .pos{color:var(--green)}.neg{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="banner">⚠ <b>DEMO / SAMPLE DATA</b> — This is a sanitized recreation of a dashboard Mason Zimmerman built during his internship at Software Technology Group. All names and figures are fictional placeholders; no real company data is shown.</div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><div class="mark"><span>S</span></div>
+        <div class="name">SOFTWARE<br>TECHNOLOGY<br>GROUP</div></div>
+      <div class="sub"><span class="dot"></span> Financials · FY 2026</div>
+    </div>
+    <nav class="nav" id="nav">
+      <a class="active" data-t="overview"><span class="ico">▦</span> Overview</a>
+      <a data-t="utilization"><span class="ico">◷</span> Utilization</a>
+      <a data-t="profitability"><span class="ico">$</span> Profitability</a>
+      <a data-t="revexp"><span class="ico">≈</span> Revenue vs Expenses</a>
+      <a data-t="concentration"><span class="ico">◎</span> Customer Concentration</a>
+      <a data-t="contractor"><span class="ico">⚙</span> Contractor Payments</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <span class="lbl">FILTERS</span>
+      <span class="pill">Employee: All ▾</span>
+      <span class="pill">Month: All ▾</span>
+      <span class="pill">Quarter: All ▾</span>
+      <span class="pill reset">Reset</span>
+      <span class="updated">◷ Data updated 6/25/26 · sample</span>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section active" id="overview">
+      <h1 class="page">Financial Overview</h1>
+      <div class="page-sub">Company KPIs and cash health for FY 2026</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Revenue</div><div class="v">$728.4K</div><div class="m">Jan–Jun</div></div>
+        <div class="kpi"><div class="k">Total Costs</div><div class="v">$691.0K</div><div class="m">Jan–Jun</div></div>
+        <div class="kpi"><div class="k">Net Income</div><div class="v">$37.4K</div><div class="m">net profit</div></div>
+        <div class="kpi"><div class="k">Cash Balance</div><div class="v">$72.1K</div><div class="m">latest month-end</div></div>
+        <div class="kpi"><div class="k">Labor % of Rev</div><div class="v">59.4%</div><div class="m">payroll ÷ revenue</div></div>
+        <div class="kpi"><div class="k">Total Equity</div><div class="v">$-54.3K</div><div class="m">annual snapshot</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Revenue vs Total Costs <small>by month</small></h3><div class="chart-wrap"><canvas id="c_revcost"></canvas></div></div>
+        <div class="card"><h3>Month-End Cash Balance <small>($)</small></h3><div class="chart-wrap"><canvas id="c_cash"></canvas></div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Balance Sheet Snapshot <small>(annual)</small></h3><div class="chart-wrap"><canvas id="c_balance"></canvas></div></div>
+        <div class="card"><h3>Net Income <small>by month</small></h3><div class="chart-wrap"><canvas id="c_netinc"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- UTILIZATION -->
+    <section class="section" id="utilization">
+      <h1 class="page">Utilization of Employees</h1>
+      <div class="page-sub">Billable vs payroll hours and utilization rate</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Avg Utilization</div><div class="v">76%</div><div class="m">billable ÷ payroll</div></div>
+        <div class="kpi"><div class="k">Billable Hours</div><div class="v">7,128</div><div class="m">FY to date</div></div>
+        <div class="kpi"><div class="k">Payroll Hours</div><div class="v">9,380</div><div class="m">FY to date</div></div>
+        <div class="kpi"><div class="k">Team Members</div><div class="v">12</div><div class="m">in selection</div></div>
+      </div>
+      <div class="card" style="margin-bottom:16px"><h3>Billable Hours vs Payroll Hours <small>by employee</small></h3><div class="chart-wrap tall"><canvas id="c_util"></canvas></div></div>
+      <div class="grid2">
+        <div class="card"><h3>Average Utilization Rate <small>by month (%)</small></h3><div class="chart-wrap"><canvas id="c_utilrate"></canvas></div></div>
+        <div class="card"><h3>Employee Detail</h3>
+          <table><thead><tr><th>Employee</th><th class="num">Billable</th><th class="num">Payroll</th><th class="num">Util</th></tr></thead><tbody id="util_tbody"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFITABILITY -->
+    <section class="section" id="profitability">
+      <h1 class="page">Profitability</h1>
+      <div class="page-sub">Sales discounts, gross &amp; net profit, and profit by employee</div>
+      <div class="alert">⚠ Sales discounts of <b>$331,200</b> erased <b>30.4%</b> of gross revenue — about 1.9× the company's full-year gross profit. Without these discounts, full-year profit would jump from <b>$86,300</b> to roughly <span class="g">$417,500</span>.</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Gross Revenue</div><div class="v">$1.09M</div><div class="m">before discounts</div></div>
+        <div class="kpi"><div class="k">Sales Discounts</div><div class="v">$-331.2K</div><div class="m">30.4% of gross</div></div>
+        <div class="kpi"><div class="k">Net Revenue</div><div class="v">$757.5K</div><div class="m">after discounts</div></div>
+        <div class="kpi"><div class="k">Gross Profit</div><div class="v">$173.9K</div><div class="m">23.0% margin</div></div>
+        <div class="kpi"><div class="k">Net Profit</div><div class="v">$86.3K</div><div class="m">net profit (FY)</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Profit Bridge <small>gross revenue → net profit</small></h3><div class="chart-wrap"><canvas id="c_bridge"></canvas></div></div>
+        <div class="card"><h3>Gross &amp; Net Profit <small>by month</small></h3><div class="chart-wrap"><canvas id="c_gnp"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- REVENUE VS EXPENSES -->
+    <section class="section" id="revexp">
+      <h1 class="page">Revenue vs Expenses</h1>
+      <div class="page-sub">Monthly P&amp;L bridge and expense composition</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Revenue</div><div class="v">$728.4K</div><div class="m">Jan–Jun</div></div>
+        <div class="kpi"><div class="k">Total Costs</div><div class="v">$691.0K</div><div class="m">Jan–Jun</div></div>
+        <div class="kpi"><div class="k">Net Income</div><div class="v">$37.4K</div><div class="m">Jan–Jun</div></div>
+        <div class="kpi"><div class="k">Best Month</div><div class="v">Jun</div><div class="m">highest net</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Revenue, Total Costs &amp; Net <small>by month</small></h3><div class="chart-wrap"><canvas id="c_pl"></canvas></div></div>
+        <div class="card"><h3>P&amp;L Composition <small>(waterfall)</small></h3><div class="chart-wrap"><canvas id="c_waterfall"></canvas></div></div>
+      </div>
+      <div class="card"><h3>Monthly P&amp;L Detail</h3>
+        <table><thead><tr><th>Month</th><th class="num">Revenue</th><th class="num">Payroll</th><th class="num">Contractor</th><th class="num">OpEx</th><th class="num">Net</th></tr></thead><tbody id="pl_tbody"></tbody></table>
+      </div>
+    </section>
+
+    <!-- CONCENTRATION -->
+    <section class="section" id="concentration">
+      <h1 class="page">Customer Concentration</h1>
+      <div class="page-sub">Revenue distribution and concentration risk by client</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Customers</div><div class="v">9</div><div class="m">active clients</div></div>
+        <div class="kpi"><div class="k">Top Customer</div><div class="v">$531.2K</div><div class="m">Apex Golf, LLC</div></div>
+        <div class="kpi"><div class="k">Top 3 Share</div><div class="v">96.8%</div><div class="m">concentration</div></div>
+        <div class="kpi"><div class="k">Avg Invoice</div><div class="v">$12.2K</div><div class="m">per invoice</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Revenue Share <small>by client</small></h3><div class="chart-wrap tall"><canvas id="c_donut"></canvas></div></div>
+        <div class="card"><h3>Revenue &amp; Invoice Count <small>by client</small></h3><div class="chart-wrap tall"><canvas id="c_clients"></canvas></div></div>
+      </div>
+    </section>
+
+    <!-- CONTRACTOR -->
+    <section class="section" id="contractor">
+      <h1 class="page">Contractor Payments</h1>
+      <div class="page-sub">Subcontractor spend and hours by vendor</div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Contractor Spend</div><div class="v">$147.4K</div><div class="m">FY to date</div></div>
+        <div class="kpi"><div class="k">Hours</div><div class="v">1,141</div><div class="m">billed</div></div>
+        <div class="kpi"><div class="k">Blended Rate</div><div class="v">$129/hr</div><div class="m">avg</div></div>
+        <div class="kpi"><div class="k">Vendors</div><div class="v">4</div><div class="m">active</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3>Spend by Contractor <small>($)</small></h3><div class="chart-wrap"><canvas id="c_contractor"></canvas></div></div>
+        <div class="card"><h3>Contractor Spend <small>by month ($)</small></h3><div class="chart-wrap"><canvas id="c_contractor_m"></canvas></div></div>
+      </div>
+      <div class="card"><h3>Contractor Detail</h3>
+        <table><thead><tr><th>Contractor</th><th class="num">Hours</th><th class="num">Avg Rate</th><th class="num">Total Spend</th></tr></thead>
+        <tbody id="con_tbody"></tbody></table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+Chart.defaults.color='#8b97ad';
+Chart.defaults.font.family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
+Chart.defaults.font.size=11.5;
+const grid={color:'#161f33'};
+const C={blue:'#5b8cff',purple:'#a78bfa',teal:'#2dd4bf',green:'#34d399',red:'#f87171',amber:'#fbbf24'};
+const months=['Jan','Feb','Mar','Apr','May','Jun'];
+const $=(id)=>document.getElementById(id);
+const usd0=v=>'$'+Math.round(v).toLocaleString();
+const k=v=>'$'+(v/1000).toFixed(0)+'K';
+
+// ---- sample data ----
+const revenue=[152000,106000,124000,111000,110000,125400];
+const costs=[105000,107000,109000,113000,182000,75000];
+const cash=[81000,76000,90000,84000,18000,72100];
+const netinc=[41600,-3900,13000,-5600,-69600,54700];
+const payroll=[70900,68500,67800,88800,102600,36000];
+const contractorM=[23000,18000,20300,12000,51200,19250];
+const opex=[13900,22000,22800,15300,26300,5800];
+
+const employees=[
+ ['Alex Carter',967,965],['Jordan Lee',965,969],['Sam Rivera',848,1025],['Taylor Brooks',844,1047],
+ ['Morgan Reed',839,1000],['Casey Nguyen',780,835],['Drew Bennett',778,1003],['Quinn Foster',712,995],
+ ['Avery Stone',190,255],['Cameron Hayes',98,215],['Riley Davis',60,80],['Jamie Park',20,940]];
+const utilRate=[22,90,90,80,58,170];
+
+const clients=[
+ ['Apex Golf, LLC',531200,72.95,38],['Northwind Health',91000,12.5,16],['Meridian Devices',82400,11.32,9],
+ ['Summit Labs',8700,1.2,4],['Vanta Networks',6700,0.92,3],['BlueRiver Data',3700,0.51,2],
+ ['Ironclad Systems',2800,0.39,2],['Cedar Bank Comms',1100,0.15,1],['Lumen Alliance',700,0.07,1]];
+const contractors=[
+ ['Vertex Studios, LLC',835,118,98620],['Pinnacle Consulting',256,130,33280],
+ ['Jane Cooper',40,65,2600],['Robert Fox',10.25,125,1281]];
+
+// ---- builders ----
+function bar(id,labels,datasets,opts={}){return new Chart($(id),{type:'bar',data:{labels,datasets},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:opts.legend!==false,labels:{usePointStyle:true,boxWidth:8}}},
+  scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}},...opts}});}
+
+// Overview
+bar('c_revcost',months,[
+ {label:'Revenue',data:revenue,backgroundColor:C.blue,borderRadius:4},
+ {label:'Total Costs',data:costs,backgroundColor:C.purple,borderRadius:4}]);
+new Chart($('c_cash'),{type:'line',data:{labels:months,datasets:[{data:cash,borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,tension:.4,pointBackgroundColor:C.teal}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+new Chart($('c_balance'),{type:'bar',data:{labels:['Assets','Liabilities','Equity'],datasets:[{data:[470000,524000,-54300],backgroundColor:[C.green,C.red,C.amber],borderRadius:4}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+new Chart($('c_netinc'),{type:'bar',data:{labels:months,datasets:[{data:netinc,backgroundColor:netinc.map(v=>v>=0?C.green:C.red),borderRadius:4}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+
+// Utilization
+bar('c_util',employees.map(e=>e[0]),[
+ {label:'Billable Hours',data:employees.map(e=>e[1]),backgroundColor:C.blue,borderRadius:4},
+ {label:'Payroll Hours',data:employees.map(e=>e[2]),backgroundColor:C.purple,borderRadius:4}],
+ {scales:{x:{grid:{display:false},ticks:{maxRotation:45,minRotation:45}},y:{grid,ticks:{callback:v=>v}}}});
+new Chart($('c_utilrate'),{type:'line',data:{labels:months,datasets:[{data:utilRate,borderColor:C.teal,backgroundColor:'rgba(45,212,191,.12)',fill:true,tension:.4,pointBackgroundColor:C.teal}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>v+'%'}}}}});
+$('util_tbody').innerHTML=employees.map(e=>{const u=(e[1]/e[2]*100).toFixed(1);
+ return `<tr><td>${e[0]}</td><td class="num">${e[1].toLocaleString()}</td><td class="num">${e[2].toLocaleString()}</td><td class="num">${u}%</td></tr>`;}).join('');
+
+// Profitability
+new Chart($('c_bridge'),{type:'bar',data:{labels:['Gross Rev','Discount','Net Rev','COGS','Gross Profit','OpEx','Net Profit'],
+ datasets:[{data:[1088000,-331200,757500,-583600,173900,-87600,86300],backgroundColor:[C.blue,C.red,C.teal,C.purple,C.amber,C.red,C.green],borderRadius:4}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{maxRotation:40,minRotation:40}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+const grossM=[58000,22000,38000,21000,-42000,60000],netM=[41000,-4000,15000,-6000,-58000,55000];
+new Chart($('c_gnp'),{type:'line',data:{labels:months,datasets:[
+ {label:'Gross Profit',data:grossM,borderColor:C.amber,tension:.4,pointBackgroundColor:C.amber},
+ {label:'Net Profit',data:netM,borderColor:C.blue,tension:.4,pointBackgroundColor:C.blue}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{usePointStyle:true,boxWidth:8}}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+
+// Revenue vs Expenses
+new Chart($('c_pl'),{data:{labels:months,datasets:[
+ {type:'bar',label:'Revenue',data:revenue,backgroundColor:C.blue,borderRadius:4},
+ {type:'bar',label:'Total Costs',data:costs,backgroundColor:C.purple,borderRadius:4},
+ {type:'line',label:'Net',data:netinc,borderColor:C.amber,tension:.4,pointBackgroundColor:C.amber}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{usePointStyle:true,boxWidth:8}}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+new Chart($('c_waterfall'),{type:'bar',data:{labels:['Revenue','Payroll','Contractor','OpEx','Net'],
+ datasets:[{data:[728400,-434600,-147400,-109000,37400],backgroundColor:[C.blue,C.red,C.red,C.red,C.green],borderRadius:4}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+$('pl_tbody').innerHTML=months.map((m,i)=>{const net=netinc[i];
+ return `<tr><td>${m} 2026</td><td class="num">${usd0(revenue[i])}</td><td class="num">${usd0(payroll[i])}</td><td class="num">${usd0(contractorM[i])}</td><td class="num">${usd0(opex[i])}</td><td class="num ${net>=0?'pos':'neg'}">${net>=0?'':'-'}$${Math.abs(net).toLocaleString()}</td></tr>`;}).join('');
+
+// Concentration
+const dColors=[C.blue,C.teal,C.purple,'#f472b6',C.amber,C.green,'#60a5fa','#fb923c',C.red];
+new Chart($('c_donut'),{type:'doughnut',data:{labels:clients.map(c=>c[0]+' — '+c[2]+'%'),datasets:[{data:clients.map(c=>c[1]),backgroundColor:dColors,borderColor:'#0a0e17',borderWidth:2}]},
+ options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{usePointStyle:true,boxWidth:8,font:{size:10.5}}}}}});
+new Chart($('c_clients'),{data:{labels:clients.map(c=>c[0]),datasets:[
+ {type:'bar',label:'Revenue',data:clients.map(c=>c[1]),backgroundColor:C.blue,borderRadius:4,yAxisID:'y'},
+ {type:'line',label:'Invoice Count',data:clients.map(c=>c[3]),borderColor:C.amber,tension:.3,pointBackgroundColor:C.amber,yAxisID:'y1'}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{usePointStyle:true,boxWidth:8}}},scales:{x:{grid:{display:false},ticks:{maxRotation:45,minRotation:45,font:{size:10}}},y:{grid,ticks:{callback:v=>k(v)}},y1:{position:'right',grid:{display:false},ticks:{stepSize:10}}}}});
+
+// Contractor
+new Chart($('c_contractor'),{type:'bar',data:{labels:contractors.map(c=>c[0]),datasets:[{data:contractors.map(c=>c[3]),backgroundColor:[C.blue,C.teal,C.purple,C.red],borderRadius:4}]},
+ options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid,ticks:{callback:v=>k(v)}},y:{grid:{display:false}}}}});
+new Chart($('c_contractor_m'),{type:'bar',data:{labels:months,datasets:[{data:contractorM,backgroundColor:C.teal,borderRadius:4}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid,ticks:{callback:v=>k(v)}}}}});
+$('con_tbody').innerHTML=contractors.map(c=>`<tr><td>${c[0]}</td><td class="num">${c[1].toLocaleString()}</td><td class="num">$${c[2]}/hr</td><td class="num">${usd0(c[3])}</td></tr>`).join('')
+ +`<tr style="font-weight:700"><td>Total</td><td class="num">1,141</td><td class="num">$129/hr</td><td class="num">$135,781</td></tr>`;
+
+// nav
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{
+ document.querySelectorAll('#nav a').forEach(x=>x.classList.remove('active'));
+ a.classList.add('active');
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ $(a.dataset.t).classList.add('active');
+ window.scrollTo(0,0);
+}));
+</script>
+</body>
+</html>
