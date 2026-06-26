@@ -41,6 +41,9 @@ export interface Education {
   school: string;
   degree: string;
   detail: string;
+  bar: string; // CSS background for the school-color accent bar (gradient)
+  accent: string; // school primary color, used for the school name
+  soft: string; // faint background tint in the school color
 }
 
 export interface Cert {
@@ -48,6 +51,9 @@ export interface Cert {
   sub: string;
   href?: string;
   cta?: string;
+  icon: string; // emoji/glyph shown in the badge
+  tint: string; // badge background color
+  fg: string; // badge foreground (icon) color
 }
 
 export interface ContactLink {
