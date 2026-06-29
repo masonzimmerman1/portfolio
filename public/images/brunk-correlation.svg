@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 440" font-family="Arial, Helvetica, sans-serif">
+  <rect width="680" height="440" fill="#ffffff"/>
+  <text x="40" y="44" fill="#1c2733" font-size="21" font-weight="800">RFM score vs. production revenue</text>
+  <text x="40" y="68" fill="#6b7686" font-size="14">Same regression, two verticals — RFM predicts revenue in Medical, but not in High-Tech.</text>
+
+  <!-- Panel 1: Medical -->
+  <text x="50" y="104" fill="#0f2a43" font-size="15" font-weight="800">Medical · N = 112</text>
+  <line x1="60" y1="130" x2="60" y2="350" stroke="#c7d0db" stroke-width="2"/>
+  <line x1="60" y1="350" x2="320" y2="350" stroke="#c7d0db" stroke-width="2"/>
+  <line x1="72" y1="338" x2="312" y2="168" stroke="#a51c30" stroke-width="2.5"/>
+  <g fill="#0f2a43">
+    <circle cx="92" cy="330" r="5"/><circle cx="120" cy="318" r="5"/><circle cx="142" cy="296" r="5"/>
+    <circle cx="168" cy="300" r="5"/><circle cx="196" cy="262" r="5"/><circle cx="220" cy="238" r="5"/>
+    <circle cx="244" cy="244" r="5"/><circle cx="268" cy="206" r="5"/><circle cx="292" cy="182" r="5"/>
+    <circle cx="306" cy="170" r="5"/>
+  </g>
+  <text x="60" y="378" fill="#1c7a4a" font-size="14" font-weight="800">r = 0.71 · R² = 0.51</text>
+  <text x="60" y="398" fill="#6b7686" font-size="13">RFM explains ~51% of revenue — Champions drive growth.</text>
+
+  <!-- Panel 2: High-Tech -->
+  <text x="380" y="104" fill="#0f2a43" font-size="15" font-weight="800">High-Tech · N = 59</text>
+  <line x1="390" y1="130" x2="390" y2="350" stroke="#c7d0db" stroke-width="2"/>
+  <line x1="390" y1="350" x2="650" y2="350" stroke="#c7d0db" stroke-width="2"/>
+  <line x1="402" y1="250" x2="642" y2="242" stroke="#9aa6b4" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <g fill="#6b7686">
+    <circle cx="412" cy="210" r="5"/><circle cx="436" cy="300" r="5"/><circle cx="460" cy="176" r="5"/>
+    <circle cx="486" cy="318" r="5"/><circle cx="510" cy="236" r="5"/><circle cx="534" cy="194" r="5"/>
+    <circle cx="558" cy="312" r="5"/><circle cx="582" cy="226" r="5"/><circle cx="606" cy="280" r="5"/>
+    <circle cx="630" cy="184" r="5"/>
+  </g>
+  <text x="390" y="378" fill="#a32d2d" font-size="14" font-weight="800">r = 0.05 · R² = 0.00</text>
+  <text x="390" y="398" fill="#6b7686" font-size="13">Near-zero — other factors drive value here.</text>
+
+  <text x="40" y="428" fill="#6b7686" font-size="12">Axes: RFM score (x) vs. average production revenue (y). One of 16 correlation models run across both verticals.</text>
+</svg>

@@ -114,6 +114,7 @@ export const projects: Project[] = [
     ],
     flow: {
       title: "How Bucks works",
+      subtitle: 'A gamified loop that turns everyday chores into financial habits — "Earn it. Learn it. Own it."',
       steps: [
         {
           num: 1,
@@ -153,15 +154,66 @@ export const projects: Project[] = [
     heading: "Customer RFM & Quoting-Pipeline Strategy",
     meta: "Data-driven strategy to support a 10% revenue-growth goal",
     blurb:
-      "As part of a cross-university analyst team, I helped a precision manufacturer figure out which clients, quotes, and strategies actually drive revenue — then turned the analysis into clear, board-ready recommendations.",
-    image: "/images/maiaprez.jpg",
+      "As one of six analysts on a cross-university team, I helped a precision manufacturer answer a single question: how to optimize its quoting pipeline to reach a 10% revenue-growth goal in one year. We turned ~171 quotes across medical and high-tech verticals into an RFM model, 16 correlation studies, and a forecasting model — then distilled it all into three board-ready plays.",
+    image: "/images/brunk-hero.svg",
+    imageContain: true,
     highlights: [
-      "Segmented 60+ B2B customers across medical & high-tech verticals with an RFM scoring model.",
-      "Ran 16 correlation models and a quote-category analysis — found one quote type drives ~7.4× more revenue per quote at the same ~11% win rate.",
-      "Showed prototyping had no measurable effect on win rate, reframing where the team should invest.",
-      "Delivered three core recommendations: re-engage quiet high-value clients, reallocate toward high-yield quotes, and finish stalled prototypes instead of starting new ones.",
+      "Built an RFM (recency–frequency–monetary) model and clustered 60+ B2B customers across medical & high-tech verticals to score loyalty and revenue potential.",
+      "Ran 16 correlation & regression models linking RFM to production, tooling, automation, and prototyping revenue — finding RFM explains ~51% of production revenue in Medical (r = 0.71) but is near-zero in High-Tech (r = 0.05).",
+      "Quantified the quoting pipeline: Category B quotes generate ~7.4× the revenue per quote of Category A — at a nearly identical ~11% win rate.",
+      "Showed prototyping has no measurable effect on win rate (~11% with or without), reframing it as a follow-through problem rather than a volume problem.",
+      "Built a four-revenue-stream forecasting model (toggleable by revenue and industry type) and a risk-analysis matrix for each recommendation.",
     ],
-    tags: ["RFM Segmentation", "Correlation Modeling", "Excel", "Strategy"],
-    note: "Note: the client's customer names and revenue figures are confidential and omitted — only aggregate, non-identifying findings are shown.",
+    tags: ["RFM Segmentation", "Regression Analysis", "Forecasting", "Strategy"],
+    band: [
+      { n: "171", l: "Quotes analyzed (112 medical · 59 high-tech)" },
+      { n: "16", l: "Correlation & regression models" },
+      { n: "7.4×", l: "Category B vs A revenue / quote" },
+      { n: "10%", l: "Revenue-growth goal we targeted" },
+    ],
+    flow: {
+      title: "How we approached it",
+      steps: [
+        {
+          num: 1,
+          title: "Segment",
+          body: "Scored 60+ customers with an RFM model and clustered them by vertical, separating loyal, high-value 'Champions' from low-loyalty accounts.",
+        },
+        {
+          num: 2,
+          title: "Model",
+          body: "Ran 16 correlation and regression models plus a four-stream forecasting model to find which behaviors actually predict revenue in each vertical.",
+        },
+        {
+          num: 3,
+          title: "Recommend",
+          body: "Translated the analysis into three prioritized plays — each with a risk matrix and concrete next steps the client could action immediately.",
+        },
+      ],
+    },
+    twoCol: [
+      {
+        title: "What I did — Analysis",
+        body: "Contributed to the RFM scoring, clustering, and correlation work in Excel — building and interpreting regressions across production, tooling, automation, and prototyping revenue for both verticals.",
+      },
+      {
+        title: "What we delivered — Strategy",
+        body: "Three board-ready recommendations: re-engage mid-to-high-RFM 'waiting' clients, reallocate quoting effort toward Category B, and stop over-investing in prototypes that don't move win rate.",
+      },
+    ],
+    gallery: [
+      {
+        src: "/images/brunk-categories.svg",
+        caption: "Quote-category analysis: Category B drives ~7.4× the revenue per quote of Category A at a similar win rate.",
+        contain: true,
+      },
+      {
+        src: "/images/brunk-correlation.svg",
+        caption: "One of 16 correlation models — RFM strongly predicts production revenue in Medical (r = 0.71), but not in High-Tech (r = 0.05).",
+        contain: true,
+      },
+    ],
+    stack: ["RFM Modeling", "Correlation & Regression", "Clustering", "Excel", "Revenue Forecasting", "Risk Analysis"],
+    note: "Performed under NDA. Customer identities and the client's actual revenue figures are confidential — the charts here are sanitized recreations using indexed values and aggregate statistics only.",
   },
 ];

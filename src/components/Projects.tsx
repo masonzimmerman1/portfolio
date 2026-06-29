@@ -9,7 +9,7 @@ function ProjectCard({ p }: { p: Project }) {
       <div className="proj-card">
         <div className="proj-hero">
           <div className="media">
-            <Img src={p.image} alt={p.heading} phClass="ph3" phText="Interactive demo loads below ↓" />
+            <Img src={p.image} alt={p.heading} phClass="ph3" phText="Interactive demo loads below ↓" imgClass={p.imageContain ? "media-contain" : undefined} />
           </div>
           <div className="body">
             <div className="kind">{p.kind}</div>
@@ -55,7 +55,7 @@ function ProjectCard({ p }: { p: Project }) {
         {p.gallery && (
           <div className="gallery">
             {p.gallery.map((g, i) => (
-              <figure key={i}>
+              <figure key={i} className={g.contain ? "fit-contain" : undefined}>
                 <Img src={g.src} alt={g.caption} phClass="ph4" phText="Add an image to /images" />
                 <figcaption>{g.caption}</figcaption>
               </figure>
@@ -79,7 +79,7 @@ function ProjectCard({ p }: { p: Project }) {
         {p.flow && (
           <div className="flow">
             <h4>{p.flow.title}</h4>
-            <div className="fs">A gamified loop that turns everyday chores into financial habits — "Earn it. Learn it. Own it."</div>
+            {p.flow.subtitle && <div className="fs">{p.flow.subtitle}</div>}
             <div className="flow-steps">
               {p.flow.steps.map((s) => (
                 <div className="flow-step" key={s.num}>

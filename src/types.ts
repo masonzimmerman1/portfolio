@@ -26,15 +26,16 @@ export interface Project {
   meta: string;
   blurb: string;
   image: string;
+  imageContain?: boolean; // render hero image with object-fit:contain (for charts/panels, not photos)
   highlights: string[];
   tags: string[];
   note?: string;
   demoUrl?: string; // opens in new tab + embeds in an iframe
   demoNote?: string; // caption shown above the embedded demo (defaults to the sanitized-data note)
   // Optional rich "deep dive" content (used by the Bucks project)
-  gallery?: { src: string; caption: string }[];
+  gallery?: { src: string; caption: string; contain?: boolean }[];
   band?: Stat[];
-  flow?: { title: string; steps: { num: number; title: string; body: string }[] };
+  flow?: { title: string; subtitle?: string; steps: { num: number; title: string; body: string }[] };
   twoCol?: { title: string; body: string }[];
   stack?: string[];
 }
