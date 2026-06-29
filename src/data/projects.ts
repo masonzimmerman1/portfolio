@@ -22,6 +22,22 @@ export const projects: Project[] = [
     ],
     tags: ["Financial Analytics", "Claude API", "Data Viz", "Dashboards"],
     demoUrl: "/stg-dashboard-demo.html",
+    band: [
+      { n: "5+", l: "KPIs in a single executive view" },
+      { n: "Live", l: "Connected to financial + ops data" },
+      { n: "AI", l: "Claude-API insights & anomaly flags" },
+      { n: "100%", l: "Brief, specs & design — authored by me" },
+    ],
+    twoCol: [
+      {
+        title: "What I built — Product",
+        body: "Authored the project brief, user stories, and dashboard design — scoping which metrics leadership actually needed and getting the plan approved by ownership before development began.",
+      },
+      {
+        title: "What I built — Engineering",
+        body: "Built the live KPI views over financial and operational data, plus an AI insights layer on the Claude API that flags anomalies and writes plain-English narrative summaries of what the numbers mean.",
+      },
+    ],
   },
   {
     id: "p4",
