@@ -21,9 +21,9 @@ export const stats: Stat[] = [
 
 export const about = {
   paragraphs: [
-    "I'm a Finance student at the University of Southern California's Marshall School of Business, also pursuing AI Applications through the Viterbi School of Engineering. I'm fascinated by how data-driven insights can improve financial decision-making and client outcomes — especially where relationship-driven wealth management meets technology and innovation.",
-    "Today I'm an IT & AI Consulting Intern at Software Technology Group and a Management Consulting Intern at Brunk Industries, where I lead a finance workstream. On campus, I'm on the finance team of the Marshall Artificial Intelligence Association and an Academy Analyst with the USC Global Investment Society, sharpening my skills in markets, modeling, and analytical thinking.",
-    "I value continuous growth — personally and professionally — and I'm always looking to connect with people working in wealth management, financial advisory, and fintech.",
+    "I am a Business Administration student at USC's Marshall School of Business, pursuing a STEM-designated B.S. with a minor in AI Applications through the Viterbi School of Engineering. I am drawn to the intersection of business strategy and technology, and to how data-driven insights sharpen decision-making and drive measurable outcomes.",
+    "As an active member of the Marshall Artificial Intelligence Association, I help design AI-enabled tools that translate product concepts into real economic outcomes. My hands-on experience spans strategy consulting and applied technology, from leading finance workstreams on client engagements to building a live business metrics dashboard with an AI-powered insights layer. I am sharpening my skills in problem structuring, quantitative analysis, and turning complex data into clear, actionable recommendations.",
+    "Outside of academics, I enjoy golfing, basketball, hiking, and the outdoors. I am always looking to connect with professionals across consulting, technology, and business strategy.",
   ],
   interestChips: ["⛳ Golf", "🎿 Skiing", "🏀 Basketball", "🥾 Hiking"],
   golfCard: {
