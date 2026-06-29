@@ -42,8 +42,8 @@ function ProjectCard({ p }: { p: Project }) {
           <div className="embed-block">
             <h4>Try it live</h4>
             <div className="es">
-              Fully interactive, sanitized demo — click the sidebar tabs to explore each view. All
-              names and figures are fictional sample data; no real company data is shown.
+              {p.demoNote ??
+                "Fully interactive, sanitized demo — click the sidebar tabs to explore each view. All names and figures are fictional sample data; no real company data is shown."}
             </div>
             <div className="frame">
               <iframe src={p.demoUrl} title={`${p.heading} Demo`} loading="lazy" />

@@ -30,6 +30,7 @@ export interface Project {
   tags: string[];
   note?: string;
   demoUrl?: string; // opens in new tab + embeds in an iframe
+  demoNote?: string; // caption shown above the embedded demo (defaults to the sanitized-data note)
   // Optional rich "deep dive" content (used by the Bucks project)
   gallery?: { src: string; caption: string }[];
   band?: Stat[];

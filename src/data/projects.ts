@@ -24,6 +24,45 @@ export const projects: Project[] = [
     demoUrl: "/stg-dashboard-demo.html",
   },
   {
+    id: "p4",
+    kicker: "Software Technology Group",
+    title: "STG Company Website",
+    subtitle: "Multi-page marketing site, designed & shipped",
+    kind: "Software Technology Group · Internship",
+    heading: "Software Technology Group — Company Website",
+    meta: "A 9-page marketing site, built and deployed end to end",
+    blurb:
+      "A full marketing website for Software Technology Group — a Beaverton engineering firm in business since 1992. I took the company's brand and existing site and rebuilt it as a modern, responsive, multi-page React app, then shipped it live with continuous deployment.",
+    image: "/images/stg-website.png",
+    highlights: [
+      "Designed and built 9 pages — Home, Services, Case Studies, Notable Projects, Partners, Testimonials, About, Careers, and Contact — as a component-driven React app.",
+      "Mirrored the company's real brand: integrated the official logo (converted from vector art) and matched its color scheme, then modernized the layout.",
+      "Added a zero-backend contact form, a full SEO/social kit (Open Graph cards, sitemap, structured data), and a responsive nav with a dropdown.",
+      "Deployed to a live URL with automatic deploys on every push to GitHub.",
+    ],
+    tags: ["React", "TypeScript", "Web Design", "SEO", "Netlify"],
+    demoUrl: "https://software-technology-group.netlify.app/",
+    demoNote:
+      "The actual live site, embedded and fully interactive — use the navigation to explore all nine pages.",
+    band: [
+      { n: "9", l: "Pages, fully responsive" },
+      { n: "Live", l: "Auto-deployed via Netlify CI" },
+      { n: "1992", l: "Client in business since" },
+      { n: "100%", l: "Custom-built — no template" },
+    ],
+    twoCol: [
+      {
+        title: "What I built — Design",
+        body: "Took the company's brand — logo, colors, and copy — and rebuilt it as a clean, modern, responsive layout: a brand-forward hero, service and case-study cards, a client roster, and a consistent design system in CSS.",
+      },
+      {
+        title: "What I built — Engineering",
+        body: "A Vite + React + TypeScript app with React Router across nine pages, a data-driven content layer, a Netlify-Forms contact form, a complete SEO/social meta layer, and CI that auto-deploys every push to production.",
+      },
+    ],
+    stack: ["React", "TypeScript", "Vite", "React Router", "CSS", "Netlify", "Git"],
+  },
+  {
     id: "p2",
     kicker: "Marshall AI Association",
     title: "“Bucks” AI Robot",
