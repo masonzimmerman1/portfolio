@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { education, certs, credentialsIntro } from "../data/credentials";
 
 // Shows the certification logo; if the image is missing, falls back to the
@@ -38,7 +38,11 @@ export function Credentials() {
 
           <div className="edu">
             {education.map((e, i) => (
-              <div className="e" key={i} style={{ background: e.soft }}>
+              <div
+                className="e reveal"
+                key={i}
+                style={{ background: e.soft, "--rd": `${i * 140}ms` } as CSSProperties}
+              >
                 <span className="e-bar" style={{ background: e.bar }} />
                 <div className="sch" style={{ color: e.accent }}>
                   {e.school}
@@ -49,7 +53,7 @@ export function Credentials() {
             ))}
           </div>
 
-          <div className="cert-grid">
+          <div className="cert-grid reveal">
             {certs.map((c, i) => {
               const inner = (
                 <>

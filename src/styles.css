@@ -39,8 +39,40 @@ header.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min
 .tab-panel{animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
+/* ============================================================
+   Motion — scroll reveals, ambient orbs, live hero viz
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease var(--rd,0s),transform .65s ease var(--rd,0s)}
+.reveal.in{opacity:1;transform:none}
+
+.orb{position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none;z-index:0}
+.orb-a{width:340px;height:340px;background:rgba(255,204,0,.30);top:70px;right:5%;animation:drift 16s ease-in-out infinite}
+.orb-b{width:300px;height:300px;background:rgba(165,28,48,.13);bottom:-70px;left:1%;animation:drift 21s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(28px,-24px)}}
+
+.viz-card{position:absolute;left:-38px;bottom:4px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:14px;padding:12px 15px;box-shadow:0 14px 34px rgba(130,90,20,.24);animation:bob 6s ease-in-out infinite}
+@media(max-width:780px){.viz-card{left:-6px}}
+.viz-label{font-size:9.5px;letter-spacing:1.4px;font-weight:800;color:var(--muted)}
+.viz-spark{width:150px;height:44px;margin:6px 0 4px;display:block}
+.viz-line{stroke-dasharray:230;stroke-dashoffset:230;animation:draw 1.7s .4s ease forwards}
+.viz-dot{opacity:0;animation:dotin .3s 1.9s ease forwards,pulse 2.2s 2.3s ease-in-out infinite}
+.viz-value{font-size:15px;font-weight:800;color:var(--ink)}
+.viz-sub{font-size:10.5px;color:var(--muted);font-weight:600}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes dotin{to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .orb,.viz-card,.viz-dot{animation:none}
+  .viz-line{animation:none;stroke-dashoffset:0}
+  .viz-dot{opacity:1}
+}
+
 /* HERO */
-.hero{color:var(--body);padding:150px 0 74px}
+.hero{color:var(--body);padding:150px 0 74px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
 @media(max-width:760px){.hero{padding-top:200px}}
 .hero .wrap{display:grid;grid-template-columns:1.4fr .9fr;gap:48px;align-items:center}
 @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;text-align:center}}
@@ -202,17 +234,17 @@ a.cert:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:trans
 /* ============================================================
    Borderless flow (home) — one continuous warm canvas
    ============================================================ */
-.flow{color:var(--body);background:
+.page-flow{color:var(--body);background:
   radial-gradient(1000px 620px at 85% -5%, rgba(255,204,0,.18), transparent 60%),
   radial-gradient(860px 560px at 5% 30%, rgba(153,0,0,.08), transparent 62%),
   radial-gradient(900px 560px at 94% 74%, rgba(255,204,0,.10), transparent 60%),
   linear-gradient(180deg,#fffdf7 0%,#fbf4e7 50%,#ffffff 100%)}
-.flow .hero{background:transparent}
-.flow .stats{background:transparent}
-.flow .stats .wrap{padding:6px 26px 40px}
-.flow .interests{background:rgba(201,162,39,.09);border:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.flow .chip{background:#fff;border-color:rgba(201,162,39,.35);color:var(--ink)}
-.flow .golf-card{border-color:rgba(201,162,39,.30)}
+.page-flow .hero{background:transparent}
+.page-flow .stats{background:transparent}
+.page-flow .stats .wrap{padding:6px 26px 40px}
+.page-flow .interests{background:rgba(201,162,39,.09);border:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.page-flow .chip{background:#fff;border-color:rgba(201,162,39,.35);color:var(--ink)}
+.page-flow .golf-card{border-color:rgba(201,162,39,.30)}
 
 /* ===== LOGOS ===== */
 .logo-box{flex:none;width:46px;height:46px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}

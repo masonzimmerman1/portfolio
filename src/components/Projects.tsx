@@ -2,11 +2,12 @@ import { useState } from "react";
 import { projects, projectsIntro } from "../data/projects";
 import type { Project } from "../types";
 import { Img } from "./Img";
+import { CountUp } from "./CountUp";
 
 function ProjectCard({ p }: { p: Project }) {
   return (
     <div className="proj-view">
-      <div className="proj-card">
+      <div className="proj-card reveal">
         <div className="proj-hero">
           <div className="media">
             <Img src={p.image} alt={p.heading} phClass="ph3" phText="Interactive demo loads below ↓" imgClass={p.imageContain ? "media-contain" : undefined} />
@@ -68,7 +69,9 @@ function ProjectCard({ p }: { p: Project }) {
           <div className="bucks-band">
             {p.band.map((b, i) => (
               <div className="bb" key={i}>
-                <div className="n">{b.n}</div>
+                <div className="n">
+                  <CountUp value={b.n} />
+                </div>
                 <div className="l">{b.l}</div>
               </div>
             ))}
@@ -131,7 +134,7 @@ export function Projects() {
           <h2 className="sec-title">Things I've built</h2>
           <p className="sec-intro">{projectsIntro}</p>
 
-          <div className="proj-tabs">
+          <div className="proj-tabs reveal">
             {projects.map((p) => (
               <button
                 key={p.id}

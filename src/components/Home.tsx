@@ -1,12 +1,19 @@
+import type { CSSProperties } from "react";
 import { profile, stats, about } from "../data/profile";
 import { Img } from "./Img";
 import { Logo } from "./Logo";
+import { CountUp } from "./CountUp";
+import { HeroViz } from "./HeroViz";
 import type { TabId } from "./Nav";
+
+const delay = (ms: number) => ({ "--rd": `${ms}ms` }) as CSSProperties;
 
 export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
   return (
-    <div className="tab-panel flow" id="home">
+    <div className="tab-panel page-flow" id="home">
       <div className="hero">
+        <div className="orb orb-a" aria-hidden="true" />
+        <div className="orb orb-b" aria-hidden="true" />
         <div className="wrap">
           <div>
             <div className="eyebrow">{profile.eyebrow}</div>
@@ -28,6 +35,7 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
           <div className="portrait">
             <Img src={profile.headshot} alt={profile.name} phClass="ph" phText="Add headshot.jpg to /images" />
             <Logo src={profile.uscLogo} name="University of Southern California" className="usc-badge" />
+            <HeroViz />
           </div>
         </div>
       </div>
@@ -35,9 +43,9 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
       <div className="stats">
         <div className="wrap">
           {stats.map((s, i) => (
-            <div className="stat" key={i}>
+            <div className="stat reveal" style={delay(i * 140)} key={i}>
               <div className="n">
-                {s.n}
+                <CountUp value={s.n} />
                 {s.nSuffix && <span>{s.nSuffix}</span>}
               </div>
               <div className="l">{s.l}</div>
@@ -49,14 +57,14 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
       <div className="panel-pad">
         <div className="wrap">
           <div className="eyebrow">About</div>
-          <h2 className="sec-title">A builder at the intersection of finance and technology</h2>
+          <h2 className="sec-title reveal">A builder at the intersection of finance and technology</h2>
           <div className="about-grid">
-            <div className="about">
+            <div className="about reveal">
               {about.paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <aside className="interests">
+            <aside className="interests reveal" style={delay(150)}>
               <h4>Beyond the resume</h4>
               <div className="chips">
                 {about.interestChips.map((c, i) => (

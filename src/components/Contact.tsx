@@ -4,7 +4,7 @@ export function Contact() {
   return (
     <div className="tab-panel">
       <div className="contact panel-pad">
-        <div className="wrap">
+        <div className="wrap reveal">
           <div className="eyebrow">Get in touch</div>
           <h2>Let's connect</h2>
           <p>{contact.intro}</p>

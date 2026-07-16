@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { roles, experienceIntro } from "../data/experience";
 import type { Role } from "../types";
 import { Logo } from "./Logo";
@@ -37,11 +38,11 @@ export function Experience() {
           <h2 className="sec-title">Where I've been working</h2>
           <p className="sec-intro">{experienceIntro}</p>
           <div className="two">
-            <div>
+            <div className="reveal">
               <h3 className="col-title">Work Experience</h3>
               <Timeline items={col1} />
             </div>
-            <div>
+            <div className="reveal" style={{ "--rd": "160ms" } as CSSProperties}>
               <h3 className="col-title">Campus Involvement</h3>
               <Timeline items={col2} />
             </div>
