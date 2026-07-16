@@ -15,20 +15,24 @@ a{color:var(--accent);text-decoration:none}
 .sec-title{font-size:30px;margin:10px 0 8px}
 .sec-intro{color:var(--muted);max-width:660px;margin-bottom:38px}
 .panel-pad{padding:64px 0}
+/* clear the fixed pill nav on pages whose first section is a panel */
+.tab-panel > .panel-pad:first-child{padding-top:136px}
+@media(max-width:760px){.tab-panel > .panel-pad:first-child{padding-top:190px}}
 
-/* NAV / TABS */
-header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:18px}
-.logo{font-weight:800;color:var(--navy);font-size:18px;letter-spacing:.3px;white-space:nowrap}
-.logo span{color:var(--accent)}
+/* NAV — seamless floating glass pill (zerocircle / everyday style) */
+header.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1040px,calc(100% - 28px));z-index:50;background:rgba(13,27,44,.68);backdrop-filter:saturate(160%) blur(18px);-webkit-backdrop-filter:saturate(160%) blur(18px);border:none;border-radius:999px;box-shadow:0 16px 40px -16px rgba(0,0,0,.55)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:58px;gap:18px}
+.logo{font-weight:800;color:#fff;font-size:17px;letter-spacing:.3px;white-space:nowrap}
+.logo span{color:var(--usc-gold)}
 .tabs{display:flex;gap:4px;flex-wrap:wrap}
-.tabs button{background:none;border:none;font-family:inherit;cursor:pointer;color:var(--ink);font-weight:600;font-size:14.5px;padding:9px 15px;border-radius:8px;transition:.18s}
-.tabs button:hover{background:var(--bg-2);color:var(--accent)}
-.tabs button.active{background:var(--navy);color:#fff}
+.tabs button{background:none;border:none;font-family:inherit;cursor:pointer;color:rgba(255,255,255,.85);font-weight:600;font-size:14px;padding:9px 16px;border-radius:999px;transition:.18s}
+.tabs button:hover{background:rgba(255,255,255,.12);color:#fff}
+.tabs button.active{background:#fff;color:var(--navy)}
 @media(max-width:760px){
-  .nav-inner{flex-direction:column;height:auto;padding:12px 0;gap:10px}
+  header.nav{top:10px;border-radius:26px}
+  .nav-inner{flex-direction:column;height:auto;padding:12px 0;gap:8px}
   .tabs{justify-content:center}
-  .tabs button{padding:8px 11px;font-size:13.5px}
+  .tabs button{padding:8px 12px;font-size:13.5px}
 }
 
 /* tab panels */
@@ -36,7 +40,8 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);bac
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* HERO */
-.hero{background:linear-gradient(160deg,#0f2a43 0%,#16385a 60%,#1d4670 100%);color:#fff;padding:80px 0 74px;border-top:4px solid var(--usc-gold)}
+.hero{background:linear-gradient(160deg,#0f2a43 0%,#16385a 60%,#1d4670 100%);color:#fff;padding:150px 0 74px}
+@media(max-width:760px){.hero{padding-top:200px}}
 .hero .wrap{display:grid;grid-template-columns:1.4fr .9fr;gap:48px;align-items:center}
 @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;text-align:center}}
 .hero h1{color:#fff;font-size:46px;letter-spacing:-.5px;margin:14px 0}
@@ -189,6 +194,29 @@ a.cert:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:trans
 .contact-list a:hover{color:#7fb0e6}
 .contact-list .ci{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#7fb0e6;font-weight:700;margin-bottom:5px}
 .footer-note{padding:24px 0;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+
+/* ============================================================
+   Borderless flow (home) — one continuous canvas, seedance/amp
+   ============================================================ */
+.flow{color:#c7d3e2;background:
+  radial-gradient(1000px 600px at 85% -5%, rgba(127,176,230,.20), transparent 60%),
+  radial-gradient(820px 540px at 6% 32%, rgba(165,28,48,.16), transparent 62%),
+  radial-gradient(900px 560px at 94% 72%, rgba(255,204,0,.07), transparent 60%),
+  linear-gradient(180deg,#0f2a43 0%,#16385a 48%,#0e2036 100%)}
+.flow .hero{background:transparent}
+.flow .stats{background:transparent}
+.flow .stats .wrap{padding:6px 26px 40px}
+.flow .eyebrow{color:var(--usc-gold)}
+.flow .sec-title{color:#fff}
+.flow .about p{color:#c7d3e2}
+.flow .interests{background:rgba(255,255,255,.06);border:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.flow .interests h4{color:#fff}
+.flow .interests .dive{color:#b9c6d6}
+.flow .interests .dive b{color:#fff}
+.flow .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#e8eef6}
+.flow .golf-card{border-color:rgba(255,255,255,.12)}
+.flow .golf-card .cap{background:rgba(255,255,255,.06);color:#c7d3e2}
+.flow .golf-card .cap b{color:var(--usc-gold)}
 
 /* ===== LOGOS ===== */
 .logo-box{flex:none;width:46px;height:46px;border-radius:10px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}

@@ -5,7 +5,7 @@ import type { TabId } from "./Nav";
 
 export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
   return (
-    <div className="tab-panel" id="home">
+    <div className="tab-panel flow" id="home">
       <div className="hero">
         <div className="wrap">
           <div>
