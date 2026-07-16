@@ -3,7 +3,7 @@ import { profile, stats, about } from "../data/profile";
 import { Img } from "./Img";
 import { Logo } from "./Logo";
 import { CountUp } from "./CountUp";
-import { HeroViz } from "./HeroViz";
+import { Marquee } from "./Marquee";
 import type { TabId } from "./Nav";
 
 const delay = (ms: number) => ({ "--rd": `${ms}ms` }) as CSSProperties;
@@ -35,10 +35,11 @@ export function Home({ onNavigate }: { onNavigate: (id: TabId) => void }) {
           <div className="portrait">
             <Img src={profile.headshot} alt={profile.name} phClass="ph" phText="Add headshot.jpg to /images" />
             <Logo src={profile.uscLogo} name="University of Southern California" className="usc-badge" />
-            <HeroViz />
           </div>
         </div>
       </div>
+
+      <Marquee />
 
       <div className="stats">
         <div className="wrap">

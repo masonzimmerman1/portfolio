@@ -7,7 +7,7 @@ import { CountUp } from "./CountUp";
 function ProjectCard({ p }: { p: Project }) {
   return (
     <div className="proj-view">
-      <div className="proj-card reveal">
+      <div className="proj-card">
         <div className="proj-hero">
           <div className="media">
             <Img src={p.image} alt={p.heading} phClass="ph3" phText="Interactive demo loads below ↓" imgClass={p.imageContain ? "media-contain" : undefined} />
@@ -148,7 +148,7 @@ export function Projects() {
             ))}
           </div>
 
-          <ProjectCard p={current} />
+          <ProjectCard p={current} key={current.id} />
         </div>
       </div>
     </div>
